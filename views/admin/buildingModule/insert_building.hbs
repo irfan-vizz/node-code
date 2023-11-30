@@ -1,0 +1,74 @@
+<!-- form contact -->
+<div class="row">
+    <div class="col-lg-8 m-auto">
+        <div class="card card-outline-secondary mt-5">
+            <div class="card-header ">
+                <h3 class="mb-0 ">New Building</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/buildings/insert" autocomplete="off" class="form" role="form" enctype="multipart/form-data">
+                    <fieldset>
+                        {{!-- <legend>Personalia:</legend> --}}
+                        <h4>Info :</h4>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="name"><strong>Name</strong></label>
+                                <input class="form-control" id="name" name="name" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="type"><strong>Type</strong></label>
+                                <select name="type" id="type" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Commercial">Commercial</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="area"><strong>Area</strong></label>
+                                <input class="form-control" id="area" name="area" required="" type="text">
+                            </div>
+                        </div>
+                        <h4>Address :</h4>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="street"><strong>Street</strong></label>
+                                <input class="form-control" id="street" name="street" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="city"><strong>City</strong></label>
+                                <input class="form-control" id="city" name="city" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="postal"><strong>Postal Code</strong></label>
+                                <input class="form-control" id="postal" name="postal" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="province"><strong>Province</strong></label>
+                                <input class="form-control" id="province" name="province" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="country"><strong>Country</strong></label>
+                                <input class="form-control" id="country" name="country" required="" type="text">
+                            </div>
+                            
+                        </div>
+                    </fieldset>
+                        <fieldset>
+                        <label class="mb-1 " for="desc"><strong>Description</strong></label>
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <textarea class="form-control" id="desc" name="desc" required="" rows="6"></textarea>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="mb-1 " for="author"><strong>Image</strong></label>
+                                <input class="form-control" id="file" name="file" required="" type="file">
+                            </div>
+                        </div>
+                        <button class="btn btn-dark  btn-md mt-4 float-right" type="submit">Add Building</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /form contact -->

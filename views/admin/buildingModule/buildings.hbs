@@ -1,0 +1,60 @@
+{{!-- {{#each post }}
+<p>This post is created by <strong>{{this.title}}</strong>. He is <strong>{{this.age}}</strong> years old</p>
+{{/each}} --}}
+<style>
+    .card-title{
+            text-transform: capitalize;
+    }
+    .card-text{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+    }
+    .post_icons a +a{
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .card-img-top{
+            height: 250px;
+    object-fit: cover;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-10 m-auto">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="text-right"> <a href="/buildings/new" class="btn btn-primary">Add New Building</a></div>
+            </div>
+            {{#each buildingData }}
+            <div class="col-md-6 col-lg-4">
+                <div class="card mt-4 w-100" style="width: 18rem;">
+                    
+                    <img class="card-img-top" src="uploads/buildings/{{this.file}}" alt="Card image cap">
+                
+                    
+                    
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">{{this.name}}</h5> 
+                            <div class="post_icons">
+                                <a class="text-success inline-block" href="/buildings/edit/{{this._id}}"><i class='fas fa-pencil-alt'></i></a>
+                                <a class="text-danger" href="/buildings/delete/{{this._id}}"><i class='fas fa-trash-alt'></i></a>
+                            </div>
+                            
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.type}}</h6>
+                        <p class="card-text">{{this.desc}}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="buildings/delete/{{this._id}}" class="btn btn-outline-primary">Delete</a>
+                            <a href="buildings/edit/{{this._id}}" class="btn btn-outline-primary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

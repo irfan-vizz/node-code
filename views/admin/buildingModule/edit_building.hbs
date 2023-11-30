@@ -1,0 +1,120 @@
+<style>
+    .img_box {
+    max-width: 200px;
+    width: 100%;
+    height: 200px;
+    background: aliceblue;
+    
+}
+.img_box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload_field{
+    max-width: 200px;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid;
+    position: relative;
+    cursor: pointer;
+}
+.upload_field p{
+margin: 0;
+padding: 10px;
+text-align: center;
+cursor: pointer;
+}
+.upload_field input{
+opacity: 0;
+position: absolute;
+top: 0;
+left:0;
+right: 0;
+bottom: 0;
+cursor: pointer;
+}
+</style>
+<!-- form contact -->
+<div class="row">
+    <div class="col-lg-8 m-auto">
+        <div class="card card-outline-secondary mt-5">
+            <div class="card-header ">
+                <h3 class="mb-0 ">UPdate Building</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/buildings/update/{{editData._id}}" autocomplete="off" class="form" role="form" enctype="multipart/form-data">
+                    <fieldset>
+                        {{!-- <legend>Personalia:</legend> --}}
+                        <h4>Info :</h4>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="name"><strong>Name</strong></label>
+                                <input class="form-control" id="name" name="name" required="" value="{{editData.name}}" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="type"><strong>Type</strong></label>
+                                <select name="type" id="type" class="form-control">
+                                    <option value=""></option>
+                                    <option {{#ifCond editData.type '==' 'Residential'}}selected{{/ifCond}} value="Residential">Residential</option>
+                                    <option {{#ifCond editData.type '==' 'Commercial'}}selected{{/ifCond}} value="Commercial">Commercial</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="area"><strong>Area</strong></label>
+                                <input class="form-control" id="area" name="area" required="" value="{{editData.area}}" type="text">
+                            </div>
+                        </div>
+                        <h4>Address :</h4>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="street"><strong>Street</strong></label>
+                                <input class="form-control" id="street" name="street" required="" value="{{editData.address.street}}" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="city"><strong>City</strong></label>
+                                <input class="form-control" id="city" name="city" required="" value="{{editData.address.city}}" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="postal"><strong>Postal Code</strong></label>
+                                <input class="form-control" id="postal" name="postal" required="" value="{{editData.address.postal}}" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="province"><strong>Province</strong></label>
+                                <input class="form-control" id="province" name="province" required="" value="{{editData.address.province}}" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="country"><strong>Country</strong></label>
+                                <input class="form-control" id="country" name="country" required="" value="{{editData.address.country}}" type="text">
+                            </div>
+                            
+                        </div>
+                    </fieldset>
+                        <fieldset>
+                        <label class="mb-1 " for="desc"><strong>Description</strong></label>
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <textarea class="form-control" id="desc" name="desc"  required="" rows="6">{{editData.desc}}</textarea>
+                            </div>
+                            <div class="col-lg-6">
+                                 <div class="img_box">
+                                    <img src="http://localhost:3001/uploads/buildings/{{editData.file}}" alt="">
+                                </div>
+                               <div class="upload_field">
+                                    {{#if editData.file}}
+                                    <input class="form-control uploadFile" id="file" name="file" value="{{editData.file}}"  type="text">
+                                    {{else}}
+                                        <input class="form-control uploadFile" id="file" name="file" value=""  required=""  type="file">
+                                    {{/if}}
+                                    <p class="fileName"> <strong>{{editData.file}}</strong> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark  btn-md mt-4 float-right" type="submit">Update Building</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /form contact -->

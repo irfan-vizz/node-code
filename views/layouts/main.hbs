@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <style>
+    #alert_notify{
+    position: fixed;
+    bottom: 0;
+    }
+  </style>
+  <body>
+    <div id="alert_notify" class="d-none w-100 ">
+      <div class="alert alert-success text-center " role="alert">
+        This is a success alert—check it out!
+      </div>
+    </div>
+      
+    <header>
+      {{>navbar}}
+    </header>
+    <div class="container-fluid mb-5">
+      {{{body}}}
+    </div>
+
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    {{!-- <script>
+      function ajaxEdit(){
+        var id = $('#update_post').attr('data_id');
+        console.log('haer')
+
+         $.ajax({
+        url: `/post/update/${id}`,
+        method: 'POST',
+        contentType: "application/json; charset=utf-8", 
+        processData:false,
+        data:JSON.stringify({
+         title: $('#title').val(),
+         author: $('#author').val(),
+         desc: $('#desc').val()
+        }),
+        success: function(response) {
+          console.log(response)
+            $('#alert_notify').removeClass('d-none');
+          setTimeout(function(){
+ 	    $('#alert_notify').addClass('d-none');
+          }, 2000); 
+          
+          return false
+        } ,error: function (xhr, ajaxOptions, thrownError) {
+  alert("Error: " + thrownError);
+     }
+    })
+      }
+    </script> --}}
+    <script>
+     
+
+    $("#upload_form").submit(function (e) {
+        e.preventDefault();
+        console.log('submitted')
+        var id = $('#update_post').attr('data_id');
+        var data = {};
+        $(this).serializeArray().map(function (x) { data[x.name] = x.value; });
+
+        $.ajax({
+          type: "POST",
+          url: `/post/update/${id}`,
+          crossDomain: true,
+          data: new FormData(this),
+          dataType: "json",
+          contentType: "multipart/form-data",
+          processData: false,
+          contentType: false,
+          cache: false,
+          headers: {
+            "Accept": "application/json"
+          }
+          , success: function (response) {
+            console.log(response)
+            $('#alert_notify').removeClass('d-none');
+            setTimeout(function () {
+              $('#alert_notify').addClass('d-none');
+            }, 2000);
+
+            return false
+          }, error: function (xhr, ajaxOptions, thrownError) {
+            alert("Error: " + thrownError);
+          }
+        });
+      });
+
+
+
+
+ $('.uploadFile').on('change', function(e){
+        var file = e.target.files[0].name;
+        var fileUrl = URL.createObjectURL(event.target.files[0]);
+        //alert(fileUrl)
+        $(this).closest('.upload_field').find('.fileName strong').html(file);
+        $('.img_box').find('img').attr('src',fileUrl);
+
+ }) 
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!-- form contact -->
+<div class="row">
+    <div class="col-lg-8 m-auto">
+        <div class="card card-outline-secondary mt-5">
+            <div class="card-header ">
+                <h3 class="mb-0 ">New User</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/users/insert" autocomplete="off" class="form" role="form" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="fname"><strong>First Name</strong></label>
+                                <input class="form-control" id="fname" name="fname" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="lname"><strong>Last Name</strong></label>
+                                <input class="form-control" id="lname" name="lname" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="phone"><strong>Phone No.</strong></label>
+                                <input class="form-control" id="phone" name="phone" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="email"><strong>Email</strong></label>
+                                <input class="form-control" id="email" name="email" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="role"><strong>Role</strong></label>
+                                <select name="role" id="role" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="buildingList"><strong>Buildings List</strong></label>
+                                <select name="buildingList" id="buildingList" multiple class="form-control">
+                                    {{!-- <option value=""></option> --}}
+                                    {{#each buildingList}}
+                                        <option value="{{this.name}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="postList"><strong>Posts List</strong></label>
+                                <select name="postList" id="postList" multiple class="form-control">
+                                    {{!-- <option value=""></option> --}}
+                                    {{#each postList}}
+                                        <option value="{{this.title}}">{{this.title}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label class="mb-1 " for="file"><strong>Image</strong></label>
+                                <input class="form-control" id="file" name="file" required="" type="file">
+                            </div>
+                        </div>
+                        <button class="btn btn-dark  btn-md mt-4 float-right" type="submit">Add User</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /form contact -->

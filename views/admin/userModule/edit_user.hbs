@@ -1,0 +1,120 @@
+<style>
+    .img_box {
+    max-width: 200px;
+    width: 100%;
+    height: 200px;
+    background: aliceblue;
+    
+}
+.img_box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload_field{
+    max-width: 200px;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid;
+    position: relative;
+    cursor: pointer;
+}
+.upload_field p{
+margin: 0;
+padding: 10px;
+text-align: center;
+cursor: pointer;
+}
+.upload_field input{
+opacity: 0;
+position: absolute;
+top: 0;
+left:0;
+right: 0;
+bottom: 0;
+cursor: pointer;
+}
+</style>
+<!-- form contact -->
+<div class="row">
+    <div class="col-lg-8 m-auto">
+        <div class="card card-outline-secondary mt-5">
+            <div class="card-header ">
+                <h3 class="mb-0 ">Update User</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/users/update/{{editData._id}}" autocomplete="off" class="form" role="form" enctype="multipart/form-data">
+                    <fieldset>
+                        {{!-- <legend>Personalia:</legend> --}}
+                        {{!-- <h4>Info :</h4> --}}
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="fname"><strong>First Name</strong></label>
+                                <input class="form-control" id="fname" name="fname" value="{{editData.fname}}" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="lname"><strong>Last Name</strong></label>
+                                <input class="form-control" id="lname" name="lname" value="{{editData.lname}}" required="" type="text">
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label class="mb-1 " for="phone"><strong>Phone No.</strong></label>
+                                <input class="form-control" id="phone" name="phone" value="{{editData.phone}}" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="email"><strong>Email</strong></label>
+                                <input class="form-control" id="email" name="email" value="{{editData.email}}" required="" type="text">
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="role"><strong>Role</strong></label>
+                                <select name="role" id="role" class="form-control">
+                                    <option value=""></option>
+                                    <option {{#ifCond editData.role '==' 'Admin'}}selected{{/ifCond}} value="Admin">Admin</option>
+                                    <option {{#ifCond editData.role '==' 'User'}}selected{{/ifCond}} value="User">User</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="buildingList"><strong>Buildings List</strong></label>
+                                <select name="buildingList" multiple id="buildingList" class="form-control">
+                                    {{#each buildingList}}
+                                        <option {{#ifCond ../editData.Buildings 'includes' this.name}}selected{{/ifCond}} value="{{this.name}}">{{this.name}}</option>
+                                    {{/each}}
+                                    {{!-- <option {{#ifCond editData.Buildings 'includes' 'Building 1'}}selected{{/ifCond}} value="Building 1">Building 1</option>
+                                    <option {{#ifCond editData.Buildings 'includes' 'Building 2'}}selected{{/ifCond}} value="Building 2">Building 2</option> --}}
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="mb-1 " for="postList"><strong>Posts List</strong></label>
+                                <select name="postList" multiple id="postList" class="form-control">
+                                    {{#each postList}}
+                                        <option {{#ifCond ../editData.posts 'includes' this.title}}selected{{/ifCond}} value="{{this.title}}">{{this.title}}</option>
+                                    {{/each}}
+                                    {{!-- <option {{#ifCond editData.posts 'includes' 'Post 1'}}selected{{/ifCond}} value="Post 1">Post 1</option>
+                                    <option {{#ifCond editData.posts 'includes' 'Post 2'}}selected{{/ifCond}} value="Post 2">Post 2</option> --}}
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                        <fieldset>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                 <div class="img_box">
+                                    <img src="http://localhost:3001/uploads/users/{{editData.file}}" alt="">
+                                </div>
+                               <div class="upload_field">
+                                    {{#if editData.file}}
+                                    <input class="form-control uploadFile" id="file" name="file" value="{{editData.file}}"  type="text">
+                                    {{else}}
+                                        <input class="form-control uploadFile" id="file" name="file" value=""  required=""  type="file">
+                                    {{/if}}
+                                    <p class="fileName"> <strong>{{editData.file}}</strong> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark  btn-md mt-4 float-right" type="submit">Update User</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /form contact -->

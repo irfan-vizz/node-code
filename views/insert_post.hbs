@@ -1,0 +1,26 @@
+<style>
+    .card-title{
+            text-transform: capitalize;
+    }
+    .card-text{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+    }
+</style>
+<div class="row">
+    {{#if element }}
+    <div class="col-md-6 col-lg-4">
+        <div class="card mt-3 w-100" style="width: 18rem;">
+           {{!--  <img class="card-img-top" src="..." alt="Card image cap"> --}}
+            <div class="card-body">
+                <h5 class="card-title">{{element.title}}</h5>
+                <p class="card-text">{{element.description}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>

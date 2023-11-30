@@ -1,0 +1,63 @@
+{{!-- {{#each post }}
+<p>This post is created by <strong>{{this.title}}</strong>. He is <strong>{{this.age}}</strong> years old</p>
+{{/each}} --}}
+<style>
+    .card-title{
+            text-transform: capitalize;
+    }
+    .card-text{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+    }
+    .post_icons a +a{
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .card-img-top{
+        height: 250px;
+        object-fit: cover;
+        width: 250px;
+        margin: auto;
+        border-radius: 50%;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-10 m-auto">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="text-right"> <a href="/users/new" class="btn btn-primary">Add New User</a></div>
+            </div>
+            {{#each userData }}
+            <div class="col-md-6 col-lg-4">
+                <div class="card mt-4 w-100" style="width: 18rem;">
+                    
+                    <img class="card-img-top" src="uploads/users/{{this.file}}" alt="Card image cap">
+                
+                    
+                    
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">{{this.fname}}</h5> 
+                            <div class="post_icons">
+                                <a class="text-success inline-block" href="/users/edit/{{this._id}}"><i class='fas fa-pencil-alt'></i></a>
+                                <a class="text-danger" href="/users/delete/{{this._id}}"><i class='fas fa-trash-alt'></i></a>
+                            </div>
+                            
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.role}}</h6>
+                        {{!-- <p class="card-text">{{this.desc}}</p> --}}
+                        <div class="d-flex justify-content-between">
+                            <a href="users/delete/{{this._id}}" class="btn btn-outline-primary">Delete</a>
+                            <a href="users/edit/{{this._id}}" class="btn btn-outline-primary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

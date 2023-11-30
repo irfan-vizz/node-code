@@ -1,0 +1,83 @@
+<!-- form contact -->
+<style>
+    .img_box {
+    max-width: 200px;
+    width: 100%;
+    height: 200px;
+    background: aliceblue;
+    
+}
+.img_box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload_field{
+    max-width: 200px;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid;
+    position: relative;
+    cursor: pointer;
+}
+.upload_field p{
+margin: 0;
+padding: 10px;
+text-align: center;
+cursor: pointer;
+}
+.upload_field input{
+opacity: 0;
+position: absolute;
+top: 0;
+left:0;
+right: 0;
+bottom: 0;
+cursor: pointer;
+}
+</style>
+{{#each data }}
+<div class="card card-outline-secondary mt-5">
+    <div class="card-header ">
+        <h3 class="mb-0 ">Edit Post</h3>
+    </div>
+    <div class="card-body">
+        <form action="post/update/{{this._id}}" method="post" id="upload_form" enctype="multipart/form-data">
+            <fieldset>
+                <div class="row mb-3">
+                    <div class="col-lg-6">
+                        <label class="mb-1 " for="title"><strong>Tilte</strong></label>
+                        <input class="form-control" id="title" name="title" required="" type="text" value="{{this.title}}">
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="mb-1 " for="author"><strong>Author</strong></label>
+                        <input class="form-control" id="author" name="author" required="" type="text" value="{{this.author}}">
+                    </div>
+                </div>
+                <label class="mb-1 " for="desc"><strong>Description</strong></label>
+                <div class="row mb-3">
+                    <div class="col-lg-12">
+                        <textarea class="form-control" id="desc" name="desc" required="" rows="6" >{{this.description}}
+                        </textarea>
+                    </div>
+                      <div class="col-lg-6">
+                        <label class="mb-1 " for="author"><strong>Author</strong></label>
+                        <div class="img_box">
+                            <img src="http://localhost:3001/uploads/posts/{{this.file}}" alt="">
+                        </div>
+                        <div class="upload_field">
+                            {{#if this.file}}
+                             <input class="form-control uploadFile" id="file" name="file" value="{{this.file}}"  type="text">
+                            {{else}}
+                                <input class="form-control uploadFile" id="file" name="file" value=""  required=""  type="file">
+                            {{/if}}
+                            <p class="fileName"> <strong>{{this.file}}</strong> </p>
+                        </div>
+                    </div>
+                </div>
+                <button id="update_post" type="submit"  data_id="{{this._id}}" class="btn btn-dark  btn-md mt-4 float-right" >Update Post</button>
+            </fieldset>
+        </form>
+    </div>
+</div><!-- /form contact -->
+{{/each}}
